@@ -1,0 +1,27 @@
+body {
+	margin-left: 3px;
+	margin-top: 0px;
+	margin-right: 3px;
+	margin-bottom: 0px;
+}
+.STYLE1 {
+	color: #e1e2e3;
+	font-size: 14px;
+}
+.STYLE6 {color: #000000; font-size: 14px; }
+.STYLE10 {color: #000000; font-size: 14px; }
+.STYLE19 {
+	color: #344b50;
+	font-size: 14px;
+}
+.STYLE21 {
+	font-size: 14px;
+	color: #3b6375;
+}
+.STYLE22 {
+	font-size: 14px;
+	color: #295568;
+}
+a:link {font-size:14px; text-decoration:none; color:#344b50;}
+a:visited {font-size:14px; text-decoration:none; color:#344b50;}
+a:hover{font-size:14px; text-decoration:none; color:#FF0000;}

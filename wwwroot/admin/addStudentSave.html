@@ -1,0 +1,18 @@
+<?php
+require("../../include/connect_db.php");
+if($stuid=="" || $pass=="" ||$sname=="")
+{
+	echo "信息不完整,学号,密码,名字必填<br><a href='javascript:history.back();'>点此返回</a>";
+	exit;
+}//检测教师帐号重复
+$sql="select * from student where stuid='$stuid'";
+$data=getone($sql);
+if(!empty($data))
+{
+	echo "学号重复,请返回修改<br><a href='javascript:history.back();'>点此返回</a>";
+	exit;
+}//stuid  pass  sname  sex  age  zy  teacher  tclass
+$sql="insert into student(stuid,pass,sname,sex,teacher,tclass,remark) values ('$stuid','$pass','$sname','$sex','$teacher','$tclass','$remark')";
+mysql_query($sql);
+header("location:showStudent.php");
+?>

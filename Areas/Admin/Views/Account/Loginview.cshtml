@@ -1,0 +1,283 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var appid = Guid.NewGuid().ToString();
+}
+<link href="~/layuimini-v2/lib/layui-v2.9.6/css/layui.css" rel="stylesheet" />
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>上班打卡管理系统</title>
+    <style type="text/css">
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url(/images/3213123.jpg);
+            background-repeat: no-repeat;
+        }
+
+        .STYLE3 {
+            font-size: 12px;
+            color: #adc9d9;
+        }
+
+        .qqq {
+            color: #0F0;
+            font-size: 60px;
+            text-align: center;
+            font-weight: bold;
+            font-family: "楷体";
+        }
+
+
+        /*        //验证码
+        */
+        .captcha-img {
+            display: inline-block;
+            width: 14%;
+            float: left;
+        }
+
+    </style>
+
+    <script language="javascript">
+        function formReset(frame) {
+            form1.reset();
+            return false;
+        }
+
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <form class="layui-form" action="">
+
+        <p class="qqq">上班打卡管理系统  </p>
+        <p>&nbsp;</p>
+        <table border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td height="84" align="center" valign="middle" background="images/login_07.jpg">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td width="39" height="24" valign="bottom"><div align="right"><span class="STYLE3">用户</span></div></td>
+                            <td width="9" valign="bottom">&nbsp;</td>
+                            <td height="24" colspan="2" valign="bottom">
+                                <div align="left">
+                                    <input type="text" value="admin" name="username" placeholder="用户名" style="width:100px; height:17px; background-color:#87adbf; border:solid 1px #153966; font-size:12px; color:#283439; ">
+                                </div>
+
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="24" valign="bottom"><div align="right"><span class="STYLE3">密码</span></div></td>
+                            <td width="9" valign="bottom">&nbsp;</td>
+                            <td height="24" colspan="2" valign="bottom"><input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input" value="123" style="width:100px; height:17px; background-color:#87adbf; border:solid 1px #153966; font-size:12px; color:#283439; "></td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td height="24" valign="bottom" style="text-align:center; font-size: 12px;color: #adc9d9;">
+
+                                验证码
+
+                            </td>
+                            <td width="9" valign="bottom">&nbsp;</td>
+
+                            <td>
+                                <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="" style="width:100px; height:17px; background-color:#87adbf; border:solid 1px #153966; font-size:12px; color:#283439; ">
+                            </td>
+
+
+                            <td style="text-align:left">
+                                <div class="captcha-img" style="float:left">
+                                    <img id="captchaPic" src="/Account/VerifyCode?appid=@appid" style="width: 100px; height: 20px; text-align:left">
+                                </div>
+                            </td>
+
+
+
+                        </tr>
+
+
+
+                        <tr>
+                            <td height="24" valign="bottom"><div align="right"><span class="STYLE3">类型</span></div></td>
+                            <td width="9" valign="bottom">&nbsp;</td>
+                            <td width="103" height="24" valign="bottom">
+                                @*      <select name="userType" id="sss" style="width:100px; height:17px; background-color:#87adbf; border:solid 1px #153966; font-size:12px; color:#283439; ">
+                                <option value="0">员工</option>
+                                <option value="1">老板</option>
+                                <option value="2">管理员</option>
+                                </select>*@
+                                <div class="layui-btn-container">
+                                    <button class="layui-btn demo-dropdown-base">
+                                        <span>员工</span>
+                                        <i class="layui-icon layui-icon-down layui-font-12"></i>
+                                    </button>
+                                </div>
+
+
+
+                                <input type="hidden" name="userType" value="100" />
+
+
+
+
+
+
+
+
+                            </td>
+                            <td width="11" valign="bottom"><div align="left"></div></td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+                </td>
+                <td>
+                    <table width="67" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td height="25">
+                                <div align="center">
+                                    <button class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="login">登 入</button>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="25">
+                                <div align="center">
+                                    <!--<input type="reset" value="重置">-->
+                                    <input class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" type="reset" value="重置" width="57" height="20" onClick="return formReset(form1);">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <p>&nbsp;</p>
+    </form>
+
+
+
+
+
+
+
+
+    <script src="~/layuimini-v2/lib/layui-v2.9.6/layui.js" charset="utf-8"></script>
+    <script src="~/layuimini-v2/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="~/layuimini-v2/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
+    <script>
+        layui.use(['form'], function () {
+            var form = layui.form,
+                layer = layui.layer;
+
+            // 登录过期的时候，跳出ifram框架
+            if (top.location != self.location) top.location = self.location;
+
+            //验证码点击事件
+            $("#captchaPic").click(function (a) {
+                let appid = "@appid";
+                // layer.msg(appid);//这是一个弹框提升
+                a.target.src = "/Account/VerifyCode?appid=" + appid + "&v" + Math.random();//添加一个随机函数使得验证码点击能变换  "&v"是一个固定的字符串，其作用可能是为了在 URL 中添加一个版本号参数。
+                //在这段JavaScript代码中，target 是一个事件属性，在这里代表了触发事件的对象。在这个特定例子中，当 #captchaPic 元素被点击时，会触发一个函数，
+                //而这个函数中的 a.target.src 就是指向触发点击事件的对象的属性 src，通常用来修改该对象的属性或执行相关操作。
+            });
+
+
+            // 进行登录操作
+            form.on('submit(login)', function (data) {
+                data = data.field;
+                console.log(data);
+
+
+                if (data.username == '') {
+                    layer.msg('用户名不能为空');
+                    return false;
+                }
+                if (data.password == '') {
+                    layer.msg('密码不能为空');
+                    return false;
+                }
+                if (data.captcha == '') {
+                    layer.msg('验证码不能为空');
+                    return false;
+                }
+                //登录请求↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+                $.ajax({
+
+                    url: "/Account/Login",
+                    type: "post",
+                    data:
+                    {
+                        username: data.username,//账号
+                        password: data.password,//密码
+                        captcha: data.captcha,  //验证码
+                        appid: "@appid",         //ID
+                        dropdown: data.userType,   //选择
+
+                    },
+
+                    success: function (res) {    //内置了一个success方法
+                        console.log(res);
+                        if (res.code == 200) {
+                            layer.msg(res.msg, function () {
+                                window.location.href = res.redirectUrl;//前端接收到后端返回的数据后，根据redirectUrl字段的值来执行相应的跳转操作
+                            });
+                        } else {
+                            layer.msg(res.msg);
+                        }
+                    }
+                });
+                //登录请求↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+                return false;
+            });
+
+
+
+
+        });
+    </script>
+    <script>
+        layui.use(function () {
+            var dropdown = layui.dropdown;
+            // 渲染
+            dropdown.render({
+                elem: '.demo-dropdown-base', // 绑定元素选择器，此处指向 class 可同时绑定多个元素
+                data: [{
+                    title: '员工',
+                    id: 100
+                }, {
+                    title: 'BOSS',
+                    id: 101
+                }, {
+                    title: '管理员',
+                    id: 102
+                }],
+                click: function (obj) {
+                    this.elem.find('span').text(obj.title);
+                    // 在这里设置 dropdown 的值为选择的下拉选项的 id
+                    $(".layui-form").find('input[name="userType"]').val(obj.id);
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

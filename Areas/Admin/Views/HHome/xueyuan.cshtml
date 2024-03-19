@@ -1,0 +1,101 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="css.css" rel="stylesheet" />
+
+
+
+</head>
+
+<body>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="30">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td height="24" bgcolor="#353c44">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td>
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td width="6%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                                                <td width="94%" valign="bottom"><span class="STYLE1">院列表</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" onmouseover="changeto()" onmouseout="changeback()">
+                    <tr>
+                        <td width="21%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">学院</span></div></td>
+                        <td width="14%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">基本操作</span></div></td>
+                    </tr>
+                    <tr>
+
+            @foreach (var xueyuans in Model)
+        {
+            <tr>
+                <td  align="center">@xueyuans.Name</td>
+                <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"><a href="#" onclick="deleteItem('@xueyuans.Id'); return false;">删除</a> | <a href="xueyuan_edit?id=@xueyuans.Id">编辑</a></div></td>
+
+            </tr>
+        }
+                    </tr>
+
+                    <tr>
+
+                        <td height="20" bgcolor="d3eaef" class="STYLE6" colspan=2><div align="center"><span class="STYLE10"><a href="xueyuan_add.php">添加学院</a></span></div></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+    </table>
+<script src="~/layuimini-v2/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+
+    <script>
+          function deleteItem(id) {
+        if (confirm('是否要删除？')) {
+            $.ajax({
+                url: '/home/Delete/' + id,
+                type: 'GET',
+                dataType: 'json', // 设置dataType为json，告诉jQuery预期从服务器接收JSON数据
+                success: function(data) {
+                    if (data.isSuccess) {
+                        // 操作成功，显示成功消息
+                        alert(data.msg);
+                         window.location.href = '/Home/Index';
+                    } else {
+                        // 操作失败，显示失败消息
+                        alert(data.msg);
+                    }
+                },
+                error: function() {
+                    // 处理请求错误的情况
+                    alert('请求失败');
+                }
+            });
+        }
+    }
+               
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>无标题文档</title>
+
+
+</head>
+<body>
+    <form onsubmit="submitForm(); return false;">
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"   >
+            <tr>
+                <td width="94%" valign="bottom"><span class="STYLE1">添加员工信息</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" >
+                        <tr>
+                            <td width="28%" height="20" bgcolor="d3eaef" class="STYLE10"><div align="center">工号：</div></td>
+                            <td width="72%" height="20" bgcolor="#FFFFFF" class="STYLE6">
+                                <div align="left">
+                                    <input type="text" name="stuid"  required/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="20" bgcolor="d3eaef" class="STYLE10"><div align="center">密码：</div></td>
+                            <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><input type="text" name="pass" required /></div></td>
+                        </tr>
+                        <tr>
+                            <td height="20" bgcolor="d3eaef" class="STYLE10"><div align="center">员工姓名：</div></td>
+                            <td height="20" bgcolor="#FFFFFF" class="STYLE6">
+                                <div align="left">
+                                    <input type="text" name="sname" required />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="20" bgcolor="d3eaef" class="STYLE10"><div align="center">性别：</div></td>
+                            <td height="20" bgcolor="#FFFFFF" class="STYLE6">
+                                <div align="left">
+                                    <input name="sex" type="radio" checked value="女" />女
+                                    <input name="sex" type="radio" value="男" />男
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="20" bgcolor="d3eaef" class="STYLE10"><div align="center">部门：</div></td>
+                            <td height="20" bgcolor="#FFFFFF" class="STYLE6">
+                                <div align="left">
+                                        <select name="department"  required>
+                                        @foreach (var item in ViewBag.Departments)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    </select>
+
+                                </div>
+                            </td>
+                        </tr>
+                        
+                    @*    <tr>
+                            <td height="20" bgcolor="d3eaef" class="STYLE10"><div align="center">备注：</div></td>
+                            <td height="20" bgcolor="#FFFFFF" class="STYLE6">
+                                <div align="left">
+                                    <textarea name="remark" cols="50" rows="5">我要做好员工</textarea>
+                                </div>
+                            </td>
+                        </tr>*@
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td height="30">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="33%">&nbsp;</td>
+                            <td width="67%"><input type="submit"  value="  添 加  " /></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+    <script src="~/layuimini-v2/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="~/layuimini-v2/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
+    <script>
+
+
+
+
+
+
+        function submitForm() {
+            var stuid = $("input[name='stuid']").val();
+            var pass = $("input[name='pass']").val();
+            var sname = $("input[name='sname']").val();
+            var sex = $("input[name='sex']:checked").val();
+            var department = $("select[name='department'] option:selected").text();
+
+            var data = {
+                stuid: stuid,
+                pass: pass,
+                sname: sname,
+                sex: sex,
+                department: department,
+            };
+
+
+            if (name == '') {
+                alert(msg);
+                return false;
+            }
+            $.ajax({
+                url: "/HHome/yg_add2", // 后端接口的URL
+                type: "POST",
+                data: data,
+
+                success: function (res) {
+                    console.log(res);
+                    if (res.isSuccess) {
+
+                        location.reload();
+
+                        alert(res.msg);
+                    } else {
+                        alert('存在不能添加');
+                    }
+                }
+
+            });
+
+        }
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?php
+require("../../include/connect_db.php");
+if($userName=="" || $userPass=="" ||$tname=="")
+{
+	echo "信息不完整,教师帐号,密码,名字必填<br><a href='javascript:history.back();'>点此返回</a>";
+	exit;
+}//检测教师帐号重复
+$sql="select * from teacher where userName='$userName'";
+$data=getone($sql);
+if(!empty($data))
+{
+	echo "教师帐号重复,请返回修改<br><a href='javascript:history.back();'>点此返回</a>";
+	exit;
+}
+$sql="insert into teacher(userName,userPass,tname,tsex,remark  ,course,tclass) values ('$userName','$userPass','$tname','$tsex','$remark'  ,'$course','$tclass')";
+mysql_query($sql);
+
+header("location:showTeacher.php");
+?>

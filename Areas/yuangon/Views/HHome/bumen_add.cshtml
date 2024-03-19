@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>无标题文档</title>
+
+
+</head>
+
+<body>
+    <form >
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" >
+
+                        <tr>
+                            <td width="23%" height="20" bgcolor="d3eaef" class="STYLE10"><div align="center"></div></td>
+                            <td width="77%" height="20" bgcolor="d3eaef" class="STYLE25">添加部门</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="center">部门名称：</div></td>
+                            <td height="20" bgcolor="#FFFFFF" class="STYLE6"><input type="text" id="name" name="name" required /></td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td height="30" align="center">
+                    <input type="button" onclick="submitForm();" value="添加" />
+                    <input type="reset" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script src="~/layuimini-v2/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="~/layuimini-v2/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
+    <script>
+
+
+
+
+
+
+        function submitForm() {
+            var name = $("#name").val();
+
+            var data = {
+                name: name
+            };
+            console.log(name);
+
+            if (name == '') {
+                alert(msg);
+                return false;
+            }
+            $.ajax({
+                url: "/HHome/bumen_add2", // 后端接口的URL
+                type: "POST",
+                data: data,
+
+                success: function (res) {
+                    console.log(res);
+                    if (res.isSuccess) {
+
+                        location.reload();
+
+                        alert(res.msg);
+                    } else {
+                        alert('存在不能添加');
+                    }
+                }
+                       
+            });
+
+        }
+
+       
+        
+    </script>
+
+</body>
+</html>

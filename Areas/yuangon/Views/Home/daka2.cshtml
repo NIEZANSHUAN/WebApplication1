@@ -1,0 +1,93 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using WebApplication1.Models.Entity;
+@model IEnumerable<Student>;
+<html>
+<body>
+
+    <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+        <tr>
+
+            <td width="12%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">工号</span></div></td>
+            <td width="13%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">姓名</span></div></td>
+            <td width="12%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">性别</span></div></td>
+            <td width="22%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">部门</span></div></td>
+            <td width="24%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">基本操作</span></div></td>
+        </tr>
+
+
+        @foreach (var imt in Model)
+        {
+            <tr>
+
+                <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">@imt.StuId  		</div></td>
+                <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">@imt.Sname  		</div></td>
+                <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">@imt.Sex  		</div></td>
+                <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">@imt.Teacher  		</div></td>
+                <td height="20" bgcolor="#FFFFFF">
+                    <div align="center">
+                        <a href="#" onclick="edits('@imt.StuId.ToString()','@imt.Sname','@imt.Sex','@imt.Teacher');">打卡</a>
+
+
+                    </div>
+                </td>
+            </tr>
+        }
+
+
+
+    </table>
+    <script src="~/layuimini-v2/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script>
+        function edits(aaa, sname, sex, teacher) {
+            console.log(aaa);
+
+
+
+            var dataa={
+                sname:sname,
+                sex:sex,
+                stuId:aaa,
+                teacher:teacher,
+            };
+            console.log(sname);
+            console.log(sex);
+            console.log(teacher);
+
+
+
+            $.ajax({
+                url: '/Home/daka22/',
+                type: 'post',
+                data: dataa,
+                success: function (data) {
+                    if (data.isSuccess) {
+                        // 操作成功，显示成功消息
+                        alert(data.msg);
+
+                    } else {
+                        // 操作失败，显示失败消息
+                        alert(data.msg);
+                    }
+                },
+                error: function () {
+                    // 处理请求错误的情况
+                    alert('请求失败');
+                }
+            });
+
+        }
+
+    </script>
+</body>
+</html>
+
+@* <a href="/Home/daka22?StuId=@imt.StuId.ToString()">打卡</a>*@
+<!--          |
+   <a href="#">旷课</a> |
+   <a href="#">迟到</a>|
+   <a href="#">请假</a>
+   -->

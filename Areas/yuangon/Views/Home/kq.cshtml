@@ -1,0 +1,133 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@using WebApplication1.Models.Entity;
+@model IEnumerable<WebApplication1.Models.Entity.Kaoqin> ;
+@*
+@model Student;*@
+@*//列出数据↑↑↑↑*@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>无标题文档</title>
+    <style type="text/css">
+        <!--
+        body {
+            margin-left: 3px;
+            margin-top: 0px;
+            margin-right: 3px;
+            margin-bottom: 0px;
+        }
+
+        .STYLE1 {
+            color: red;
+            font-size: 14px;
+        }
+
+        .STYLE6 {
+            color: #000000;
+            font-size: 12;
+        }
+
+        .STYLE10 {
+            color: #000000;
+            font-size: 12px;
+        }
+
+        .STYLE19 {
+            color: #344b50;
+            font-size: 12px;
+        }
+
+        .STYLE21 {
+            font-size: 12px;
+            color: #3b6375;
+        }
+
+        .STYLE22 {
+            font-size: 12px;
+            color: #295568;
+        }
+
+        a:link {
+            font-size: 12px;
+            text-decoration: none;
+            color: #344b50;
+        }
+
+        a:visited {
+            font-size: 12px;
+            text-decoration: none;
+            color: #344b50;
+        }
+
+        a:hover {
+            font-size: 12px;
+            text-decoration: none;
+            color: #FF0000;
+        }
+        -->
+    </style>
+</head>
+<body>
+    <br>
+    <form name="powersearch"  >
+
+
+        <input type="submit" name="button" id="button" value="查询考勤" onclick="showData(event)">
+        
+
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" >
+                    <tr>
+
+                        <td width="12%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">工号</span></div></td>
+                        <td width="13%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">姓名</span></div></td>
+                        <td width="12%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">性别</span></div></td>
+                        <td width="22%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">部门</span></div></td>
+                        <td width="10%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">状态</span></div></td>
+                        <td width="24%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">打卡时间</span></div></td>
+                    </tr>
+
+        </table>
+
+            <div id="dataContainer" style="display: none;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" >
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                        <td width="12%" height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">@item.Stuid<span class="STYLE19"></span></div></td>
+                        <td width="13%" height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">@item.Tid</div></td>
+                        <td width="12%" height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">@item.Course</div></td>
+                        <td width="22%" height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">@item.Tclass</div></td>
+                        <td width="10%" height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">@item.Ktype</div></td>
+                        <td width="24%" height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">@item.Kdate</div></td>
+                </tr>
+                }
+            </table>
+            </div>
+
+                    
+
+                    
+
+
+                
+    </form>
+    <script src="~/layuimini-v2/lib/layui-v2.9.6/layui.js"></script>
+    <script src="~/layuimini-v2/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script>
+        function showData(event) {
+            event.preventDefault();
+            $('#dataContainer').show();
+        }
+    </script>
+
+
+</body>
+</html>
